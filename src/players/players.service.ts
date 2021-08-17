@@ -76,6 +76,6 @@ export class PlayersService {
       throw new NotFoundException('email not found');
     }
 
-    return this.playerModel.remove({email}).exec();
+    return this.playerModel.remove({ email }).exec();
   }
 }
