@@ -75,4 +75,12 @@ export class PlayersService {
 
     return this.playerModel.deleteOne({ _id }).exec();
   }
+
+  async verifyPlayerExist({ _id }) {
+    const player = await this.playerModel.findOne({ _id });
+
+    if (!player) {
+      throw new NotFoundException(`Player ID: ${_id} not found`);
+    }
+  }
 }
