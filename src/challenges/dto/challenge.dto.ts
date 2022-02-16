@@ -5,11 +5,13 @@ import {
   IsArray,
   IsDateString,
   IsNotEmpty,
+  IsOptional,
   IsString,
 } from 'class-validator';
 
 import { CreateCategoriesDTO } from 'src/categories/dto/catagories.dto';
 import { Player } from 'src/players/interfaces/player.interface';
+import { Result } from '../interfaces/challenge.interface';
 
 export class CreateChallengeDTO {
   @IsNotEmpty()
@@ -25,4 +27,20 @@ export class CreateChallengeDTO {
   players: Player[];
 }
 
-export class UpdateChallengeDTO extends PartialType(CreateCategoriesDTO) {}
+export class UpdateChallengeDTO {
+  @IsDateString()
+  @IsOptional()
+  dateTime?: Date;
+
+  @IsString()
+  @IsOptional()
+  status?: string;
+}
+
+export class AddMatchChallengeDTO {
+  @IsNotEmpty()
+  def: Player;
+
+  @IsNotEmpty()
+  result: Result[];
+}
